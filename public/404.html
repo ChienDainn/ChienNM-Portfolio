@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Not found — Chien NM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight:wght@400&family=JetBrains+Mono:wght@400&display=swap" />
+  <style>
+    /* Trang tĩnh riêng, không dùng bundle — 404 phải hiện được ngay cả khi
+       JS hay CSS chính hỏng. Màu lấy đúng token của trang chính. */
+    body {
+      margin: 0; min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 20px; padding: 24px 24px 96px;
+      background: #0C0D0F; color: #EDEAE3;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      color: #7D7F86;
+    }
+    h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(2.5rem, 11vw, 6rem); line-height: .9;
+      margin: 0; letter-spacing: -.02em;
+    }
+    p { color: #9A9992; max-width: 46ch; margin: 0; }
+    a {
+      color: #C9A961; text-decoration: none;
+      font-family: 'JetBrains Mono', monospace; font-size: 13px;
+      width: fit-content; border-bottom: 1px solid currentColor; padding-bottom: 2px;
+    }
+    a:focus-visible { outline: 2px solid #C9A961; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <p class="code">404</p>
+  <h1>Nothing here.</h1>
+  <p>That address does not exist. It may have been a typo, or a link I never made.</p>
+  <a href="/">Back to the start &rarr;</a>
+</body>
+</html>

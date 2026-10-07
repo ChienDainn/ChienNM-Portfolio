@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Graphite ground, bone text, brass as the only chroma.
+   Mọi màu chữ ở đây đã đo tương phản với --color-ground và đạt WCAG AA
+   (≥ 4.5:1): muted 6.8, faint 4.86, brass 8.64, bone 16.2, rust 5.43.
+   Bản đầu dùng #5C5E64 cho faint — chỉ 3.0:1, không đạt.
+   Deliberately not the usual dev-portfolio near-black + acid
+   green: the one hue shift is a warm metal, which pairs with the
+   serif display and keeps data colours free for actual data.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-ground:    #0C0D0F;
+  --color-surface:   #14161A;
+  --color-surface-2: #1C1F25;
+  --color-hairline:  #25282E;
+  --color-bone:      #EDEAE3;
+  --color-muted:     #9A9992;
+  --color-faint:     #7D7F86;
+  --color-brass:     #C9A961;
+  --color-rust:      #D2694A;
+
+  --font-display: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-2xs: 11px;
+  --text-2xs--line-height: 1.5;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      transition-duration: .01ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ground);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* macOS dùng thanh cuộn nổi, tự ẩn; Windows thì vẽ thanh xám cố định cạnh
+     trang, cột trái và sơ đồ Flow — lạc tông hẳn trên nền graphite. Ẩn hết:
+     vẫn cuộn bằng chuột, bàn phím, cảm ứng như thường.
+     scrollbar-width cho Firefox, Chrome/Edge 121+, Safari 18.2+;
+     ::-webkit-scrollbar đỡ cho bản cũ hơn. */
+  * { scrollbar-width: none; }
+  *::-webkit-scrollbar { display: none; }
+
+  ::selection { background: var(--color-brass); color: var(--color-ground); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3 { text-wrap: balance; }
+}
+
+@utility tnum { font-variant-numeric: tabular-nums; }
+
+/* Eyebrow label: mono, tracked out, quiet. Used to mark structure,
+   never for decoration. */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+@utility hairline-t { border-top: 1px solid var(--color-hairline); }
+
+/* Fine grain over the whole page: keeps large dark areas from
+   looking like flat #000 on OLED screens. */
+@utility grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: .035;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}

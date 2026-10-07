@@ -1,39 +1,27 @@
 # Chien NM — Portfolio
 
-Portfolio một trang của Chien NM, Full-stack Web Developer (.NET / ABP, nopCommerce, Angular, React).
+Trang cá nhân của Chien NM, Full-stack Web Developer. React 19 + Vite + Tailwind v4 + GSAP.
 
-## Tech stack
+Bố cục và hệ thống chuyển động dựa trên [tritdx-portfolio](https://github.com/TriTran1911/tritdx-portfolio) của Tri Tran; toàn bộ nội dung, sơ đồ và tài sản cá nhân đã được thay bằng của Chien NM.
 
-- React 19 + TypeScript
-- Vite 6
-- Tailwind CSS v4
-- GSAP (hiệu ứng reveal, tôn trọng `prefers-reduced-motion`)
-- Fonts: Instrument Serif, Inter Tight, JetBrains Mono
-
-## Cấu trúc
-
-```
-src/
-  App.tsx        # layout và các section (Hero, Work, Skills, Contact)
-  index.css      # theme Tailwind (màu, font) và lớp grain
-  lib/data.ts    # TOÀN BỘ nội dung: profile, projects, skills
-index.html
-```
-
-Muốn đổi nội dung (thông tin cá nhân, dự án, kỹ năng, link GitHub/LinkedIn) chỉ cần sửa `src/lib/data.ts`.
-
-## Chạy local
+## Chạy
 
 ```bash
 npm install
-npm run dev      # http://localhost:5180
-npm run build    # output vào dist/
-npm run preview  # xem thử bản build
+npm run dev        # http://localhost:5180
+npm run build      # ra dist/
 ```
+
+## Sửa nội dung
+
+Chỉ sửa `src/lib/data.ts` (kinh nghiệm, dự án, kỹ năng, liên hệ). Muốn hiện ảnh đại diện thì đặt `public/portrait.jpg`; hiện LinkedIn / số điện thoại / CV thì điền trong `CONTACT`.
+
+Sơ đồ mục 03 nằm ở `src/sections/Flow.tsx`.
 
 ## Deploy
 
-Site tĩnh, deploy được lên Cloudflare Pages hoặc GitHub Pages:
+Site tĩnh. Cloudflare Pages hoặc GitHub Pages: build command `npm run build`, output `dist`. File `public/_headers` dành cho Cloudflare Pages.
 
-- Build command: `npm run build`
-- Output directory: `dist`
+## Chuyển động
+
+Mọi animation đi qua `motionSafe()` trong `src/lib/motion.ts`; người bật "giảm chuyển động" nhận trạng thái cuối ngay lập tức. `index.html` có khối `<noscript>` ép hiện lại nội dung khi không có JS.
